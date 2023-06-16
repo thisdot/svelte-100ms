@@ -1,6 +1,7 @@
 {
 	"name": "svelte-hms-world",
 	"version": "0.0.1",
+	"license": "MIT",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
@@ -40,6 +41,7 @@
 		"@tensorflow-models/hand-pose-detection": "^2.0.0",
 		"@tensorflow/tfjs-backend-webgl": "^4.7.0",
 		"@tensorflow/tfjs-converter": "^4.7.0",
-		"@tensorflow/tfjs-core": "^4.7.0"
+		"@tensorflow/tfjs-core": "^4.7.0",
+		"fingerpose": "^0.1.0"
 	}
 }
