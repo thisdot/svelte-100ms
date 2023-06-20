@@ -1,11 +1,35 @@
 <script>
   import {hmsActions} from "./hms.ts";
+  import {tokenStore} from "./hmsStores";
+  import {toast} from "./_components/toasts";
 
-  let name = '';
-  let token = '';
+  const userKey = "name";
+  const tokenKey = "token";
+  const urlParams = new URLSearchParams(window.location.search);
 
-  function join() {
-    hmsActions.join({ userName: name, authToken: token, rememberDeviceSelection: true });
+  // support for query params to directly populate the name and auth token values
+  let name = urlParams.get(userKey) || localStorage.getItem(userKey) || "";
+  let token = urlParams.get(tokenKey) || localStorage.getItem(tokenKey) || "";
+
+  const joinAsMuted = false;
+  const settings = joinAsMuted ? {isAudioMuted: true, isVideoMuted: true} : {};
+
+  let joinInProgress = false;
+  async function join() {
+    // set the values in localstorage to avoid taking in every time
+    localStorage.setItem(userKey, name);
+    localStorage.setItem(tokenKey, token);
+    try {
+      joinInProgress = true;
+      tokenStore.set(token);
+      toast.removeAll(); // it's a new start
+      await hmsActions.join({ userName: name, authToken: token, rememberDeviceSelection: true, settings });
+    } catch (err) {
+      console.error("Error in joining room", err);
+      toast.terminal(`Can't join => ${err.message}: ${err.description}`);
+    } finally {
+      joinInProgress = false;
+    }
   }
 </script>
 
@@ -25,13 +49,13 @@
                 placeholder="App token for a room"
         />
 
-    <button type="submit" class="btn-primary">Join</button>
+    <button type="submit" class="btn-primary join-btn">{joinInProgress ? "Joining..." : "Join"}</button>
 </form>
 
 <style>
 
     form {
-        max-width: 450px;
+        width: min(100%, 500px);
 
         margin: 30px auto;
         padding: 20px;
