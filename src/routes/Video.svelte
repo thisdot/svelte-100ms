@@ -14,7 +14,7 @@
 		const detectorConfig = {
 			runtime: 'mediapipe',
 			modelType: 'lite',
-			solutionPath: 'https://cdn.jsdelivr.net/npm/@mediapipe/hands/'
+			solutionPath: `${window.location.href}static/handsModel/`
 		};
 		return await handPoseDetection.createDetector(model, detectorConfig);
 	};
