@@ -138,6 +138,7 @@
 	.chat-message-message {
       font-size: 1rem;
       line-height: 1.25rem;
+			list-style-position: inside;
 	}
 
 	.chat-message-info {

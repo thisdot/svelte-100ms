@@ -35,6 +35,7 @@ export const hmsSelectedDevices = hmsToSvelteStore(selectLocalMediaSettings);
 
 // UI things
 export const isChatOpen = writable(false);
+export const isTalking = writable('');
 
 // Screenshare related
 export const hmsAmIScreenSharing = hmsToSvelteStore(selectIsLocalScreenShared);

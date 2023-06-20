@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { hmsPeers } from '../hmsStores';
+	import { hmsPeers, isTalking } from '../hmsStores';
 	import Peer from '../Peer.svelte';
 	import { onMount } from 'svelte';
 	import { findBestFitLayout } from './bestFit';
@@ -79,7 +79,7 @@
 <div class="gallery-container" bind:this={galleryContainer}>
 	<div class="gallery {justify_content_start}">
 		{#each $hmsPeers as peer (peer.id)}
-			<div class="tile">
+			<div class="tile {$isTalking === peer.id ? 'first' : ''}">
 				<Peer {peer} />
 				<div class="resizer" title="resize" on:mousedown={mouseDownHandler}><MinimizeIcon /></div>
 			</div>
@@ -117,6 +117,10 @@
 		justify-content: center;
 		align-items: center;
 		position: relative;
+		order: 99999;
+	}
+	.tile.first {
+		order: 0;
 	}
 
 	.tile > .resizer {

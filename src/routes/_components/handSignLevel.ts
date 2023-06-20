@@ -1,5 +1,6 @@
 import { hmsStore } from '../hms';
 import { selectVideoTrackByPeerID } from '@100mslive/hms-video-store';
+import { isTalking } from '../hmsStores';
 
 /**
  * show audio level by creating a box shadow around the peer element when the person speaks
@@ -9,6 +10,10 @@ export function addHandSignBorder(peerId: string, element: HTMLElement) {
 	return hmsStore.subscribe((level) => {
 		if (!element) {
 			return;
+		}
+
+		if (level && peerId) {
+			isTalking.set(peerId);
 		}
 
 		const tile = element.parentNode as any;
