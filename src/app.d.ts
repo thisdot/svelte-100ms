@@ -3,3 +3,4 @@
 // and what to do when importing types
 declare namespace App {}
 declare module 'fingerpose';
+declare module 'marked';

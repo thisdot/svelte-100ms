@@ -1,4 +1,5 @@
 <script lang="ts">
+	import {marked} from 'marked';
 	import { hmsMessages, isChatOpen } from '../hmsStores';
 	import { hmsActions } from '../hms';
 	import { toast } from './toasts';
@@ -52,7 +53,7 @@
 	<div bind:this={chatBodyElement} class="chat-messages">
 		{#each $hmsMessages as msg (msg.id)}
 			<div class="chat-message" class:msgRight={msg.senderName === "You"}>
-				<p class="chat-message-message">{msg.message}</p>
+				<p class="chat-message-message">{@html marked(msg.message)}</p>
 				<span class="chat-message-info">{msg.senderName}, {formatTime(msg.time)}</span>
 			</div>
 		{/each}
