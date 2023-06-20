@@ -10,11 +10,17 @@ export function addAudioBorder(peerId: string, element: HTMLElement) {
 		if (!element) {
 			return;
 		}
+		
 		const sigmoid = (num: number) => 1 / (1 + Math.exp(-num));
+		const tile = element.parentNode as any;
 		const color = '#afd3ea';
-		element.style.transition = 'box-shadow 0.3s ease-in-out';
-		element.style.boxShadow = level
-			? `0px 0px ${24 * sigmoid(level)}px ${color}, 0px 0px ${16 * sigmoid(level)}px ${color}`
-			: '';
+		if(tile) {
+			tile.style.transition = 'box-shadow 0.3s ease-in-out';
+			tile.style.boxShadow = level
+				? `0px 0px ${24 * sigmoid(level)}px ${color}, 0px 0px ${16 * sigmoid(level)}px ${color}`
+				: '';
+		}
+		element.style.transition = 'box-shadow 0.3s ease-in-out, transform 0.5s ease-in-out';
+		element.style.transform = level ? 'scale(1.4)' : 'scale(1)';
 	}, selectPeerAudioByID(peerId));
 }

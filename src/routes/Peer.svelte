@@ -35,7 +35,7 @@
             <Avatar name={peer.name}/>
         </div>
     {/if}
-    <Video mirror={peer.isLocal} trackId={videoTrack?.id}/>
+    <Video mirror={peer.isLocal} trackId={videoTrack?.id} peerId={peer.id} peerContainer={peerTileElement} />
     <div class="peer-name">
         {peer.name} {peer.isLocal ? "(You)" : ""}
     </div>
