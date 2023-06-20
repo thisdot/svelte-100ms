@@ -28,10 +28,11 @@
 	let unsub;
 	let videoElement; // this will be populated on mount
 	let detector;
-  let sign;
+  	let sign;
 
 	onMount(async () => {
 		detector = await createDetectionInstance();
+		console.log( detector );
 	});
 
 	function manageVideo(trackId, videoElement) {
@@ -46,6 +47,9 @@
 			if (track?.enabled) {
 				hmsActions.attachVideo(track.id, videoElement);
 				setInterval(async () => {
+					if ( !detector ) {
+						detector = await createDetectionInstance();
+					}
 					const hands = await detector.estimateHands(videoElement);
 
 					addHandSignBorder(hands.length ? peerId : '', peerContainer);
