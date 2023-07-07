@@ -70,6 +70,15 @@
         border-radius: 8px;
     }
 
+    ul {
+      padding: 20px;
+    }
+
+    a {
+      color: white;
+      font-weight: bold;
+    }
+
     input {
         display: block;
 
