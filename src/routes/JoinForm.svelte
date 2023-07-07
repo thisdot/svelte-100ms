@@ -35,19 +35,25 @@
 
 <form on:submit|preventDefault={join}>
     <h2>Join Room</h2>
-        <input
-                bind:value={name}
-                type="text"
-                name="name"
-                placeholder="What's your name?"
-        />
+    <p>To try out the following demo by following the steps below.</p>
+    <ul>
+      <li>Create an account on https://dashboard.100ms.live/</li>
+      <li>Get an auth token for a room following <a href="https://www.100ms.live/docs/javascript/v2/guides/token#getting-a-temporary-token">this</a>.</li>
+    </ul>
 
-        <input
-                bind:value={token}
-                type="text"
-                name="token"
-                placeholder="App token for a room"
-        />
+    <input
+            bind:value={name}
+            type="text"
+            name="name"
+            placeholder="What's your name?"
+    />
+
+    <input
+            bind:value={token}
+            type="text"
+            name="token"
+            placeholder="App token for a room"
+    />
 
     <button type="submit" class="btn-primary join-btn">{joinInProgress ? "Joining..." : "Join"}</button>
 </form>
