@@ -25,7 +25,7 @@
             <button title="Leave" class="btn-danger leave-btn space-right" on:click={leaveRoom}> Leave Room </button>
             <span class="space-right"><ShareLink/></span>
         {/if}
-        <a title="Go to GitHub" href="https://github.com/100mslive/svelte-100ms/tree/features" rel="noreferrer" target="_blank">
+        <a title="Go to GitHub" href="https://github.com/thisdot/svelte-100ms" rel="noreferrer" target="_blank">
             <img src="github.png" alt="Github Repo">
         </a>
     </div>
